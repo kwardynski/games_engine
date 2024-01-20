@@ -7,9 +7,31 @@ defmodule GamesEngine.MixProject do
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        "ci.test": :test,
+        coveralls: :test,
+        "coveralls.html": :test
+      ]
+    ]
+  end
+
+  defp description do
+    """
+    Elixir library with utilities for games, such as helpful coordinate conversions.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README.md", "LICENSE"],
+      maintainers: ["Kacper Wardynski"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/kwardynski/games_engine"}
     ]
   end
 
@@ -27,22 +49,16 @@ defmodule GamesEngine.MixProject do
 
       # SCA
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false}
+      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
+
+      # Testing
+      {:excoveralls, "~> 0.18", only: :test}
     ]
   end
 
-  defp description do
-    """
-    Elixir library with utilities for games, such as helpful coordinate conversions.
-    """
-  end
-
-  defp package do
+  defp aliases do
     [
-      files: ["lib", "mix.exs", "README.md", "LICENSE"],
-      maintainers: ["Kacper Wardynski"],
-      licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/kwardynski/games_engine"}
+      "ci.test": ["coveralls.html"]
     ]
   end
 end

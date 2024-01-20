@@ -1,0 +1,9 @@
+{
+    "coverage_options": {
+        "minimum_coverage": 75
+    },
+    "skip_files": [
+        "lib/games_engine.ex",
+        "lib/games_engine/application.ex"
+    ]
+}
