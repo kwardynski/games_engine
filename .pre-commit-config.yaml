@@ -1,0 +1,34 @@
+repos:
+  
+  - repo: local
+    
+    hooks: 
+      
+      - id: mix-format
+        name: "format"
+        entry: mix format --check-formatted
+        language: system
+      
+      - id: mix-credo
+        name: "credo"
+        entry: mix credo --strict --format oneline
+        language: system
+        pass_filenames: false
+      
+      - id: mix-sobelow
+        name: "sobelow"
+        entry: "mix sobelow --config"
+        language: system
+        pass_filenames: false
+
+      - id: mix-compile-check
+        name: "check compile"
+        entry: mix compile --force --warnings-as-errors
+        language: system
+        pass_filenames: false
+
+      - id: mix-test
+        name: "test"
+        entry: mix test --warnings-as-errors
+        language: system
+        pass_filenames: false
