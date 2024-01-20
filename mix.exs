@@ -7,6 +7,8 @@ defmodule GamesEngine.MixProject do
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
       deps: deps()
     ]
   end
@@ -21,9 +23,26 @@ defmodule GamesEngine.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+
       # SCA
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp description do
+    """
+    Elixir library with utilities for games, such as helpful coordinate conversions.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README.md", "LICENSE"],
+      maintainers: ["Kacper Wardynski"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/kwardynski/games_engine"}
     ]
   end
 end
