@@ -52,7 +52,8 @@ defmodule GamesEngine.MixProject do
       {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
 
       # Testing
-      {:excoveralls, "~> 0.18", only: :test}
+      {:excoveralls, "~> 0.18", only: :test},
+      {:stream_data, "~> 0.6.0", only: [:dev, :test]}
     ]
   end
 
