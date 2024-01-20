@@ -13,4 +13,17 @@ defmodule GamesEngine.Validations.GridValidations do
       do: {:error, "#{ind} exceeds the bounds of a #{rows}x#{cols} board"},
       else: :ok
   end
+
+  @doc """
+  Ensures a row/col subscript is within the bounds of the supplied grid
+  """
+  @spec sub_within_bounds(
+          {non_neg_integer(), non_neg_integer()},
+          {non_neg_integer(), non_neg_integer()}
+        ) :: :ok | {:error, String.t()}
+  def sub_within_bounds({row, col}, {rows, cols}) do
+    if row < rows && col < cols,
+      do: :ok,
+      else: {:error, "(#{row}, #{col}) exceeds the bounds of a #{rows}x#{cols} board"}
+  end
 end
