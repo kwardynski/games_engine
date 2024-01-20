@@ -56,9 +56,6 @@ jobs:
     - name: Install dependencies
       run: mix deps.get
 
-    - name: Compiles without warnings
-      run: mix compile --warnings-as-errors
-
     - name: Check Formatting
       run: mix format --check-formatted
 
@@ -67,6 +64,9 @@ jobs:
 
     - name: Run Sobelow
       run: mix sobelow --config
+
+    - name: Compiles without warnings
+      run: mix compile --warnings-as-errors
 
     - name: Run tests
       run: mix ci.test
