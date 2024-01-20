@@ -1,6 +1,6 @@
 # GamesEngine
 
-**TODO: Add description**
+Elixir library with utilities for games, such as helpful coordinate conversions (for now).
 
 ## Installation
 
