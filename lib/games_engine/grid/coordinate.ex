@@ -18,10 +18,8 @@ defmodule GamesEngine.Grid.Coordinate do
   | 1 | 4 | 7 | --> |1,0|1,1|1,2|
   | 2 | 5 | 8 |     |2,0|2,1|2,2|
   """
-  @spec(
-    ind_2_sub(non_neg_integer(), {non_neg_integer(), non_neg_integer()}) :: t(),
-    {:error, String.t()}
-  )
+  @spec ind_2_sub(non_neg_integer(), {non_neg_integer(), non_neg_integer()}) :: t(),
+        {:error, String.t()}
   def ind_2_sub(ind, {rows, cols}) do
     with(
       :ok <- NumericValidations.non_neg_integer(ind),
