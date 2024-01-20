@@ -1,0 +1,7 @@
+repos:
+  - repo: local
+    hooks: 
+      - id: mix-format
+        name: "mix format"
+        entry: mix format --check-formatted
+        language: system
