@@ -26,4 +26,28 @@ defmodule GamesEngine.Grid.CoordinateTest do
       assert %Coordinate{row: 1, col: 1} == Coordinate.ind2sub(4, {3, 2})
     end
   end
+
+  describe "sub2ind/2" do
+    test "returns error tuple if row is not a positive integer" do
+      assert {:error, _} = Coordinate.sub2ind({-1, 2}, {3, 3})
+    end
+
+    test "returns error tuple if col is not a positive integer" do
+      assert {:error, _} = Coordinate.sub2ind({1, -2}, {3, 3})
+    end
+
+    test "returns error tuple if rows is not a positive integer" do
+      assert {:error, _} = Coordinate.sub2ind({1, 2}, {-3, 3})
+    end
+
+    test "returns error tuple if cols is not a positive integer" do
+      assert {:error, _} = Coordinate.sub2ind({1, 2}, {3, -3})
+    end
+
+    test "correctly converts row/col sub to linear index" do
+      assert 5 == Coordinate.sub2ind({2, 1}, {3, 3})
+      assert 4 == Coordinate.sub2ind({0, 2}, {2, 3})
+      assert 4 == Coordinate.sub2ind({1, 1}, {3, 2})
+    end
+  end
 end

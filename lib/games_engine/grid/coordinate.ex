@@ -33,4 +33,23 @@ defmodule GamesEngine.Grid.Coordinate do
       %__MODULE__{row: row, col: col}
     end
   end
+
+  @doc """
+  Converts a coordinate's row/col subscript into a linear index
+
+  |0,0|0,1|0,2|     | 0 | 3 | 6 |
+  |1,0|1,1|1,2| --> | 1 | 4 | 7 |
+  |2,0|2,1|2,2|     | 2 | 5 | 8 |
+  """
+  def sub2ind({row, col}, {rows, cols}) do
+    with(
+      :ok <- NumericValidations.non_neg_integer(row),
+      :ok <- NumericValidations.non_neg_integer(col),
+      :ok <- NumericValidations.non_neg_integer(rows),
+      :ok <- NumericValidations.non_neg_integer(cols),
+      :ok <- GridValidations.sub_within_bounds({row, col}, {rows, cols})
+    ) do
+      rows * col + row
+    end
+  end
 end
