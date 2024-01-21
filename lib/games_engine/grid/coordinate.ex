@@ -15,6 +15,19 @@ defmodule GamesEngine.Grid.Coordinate do
   defstruct row: nil, col: nil
 
   @doc """
+  Creates a new `%Coordinate{}` struct
+  """
+  @spec new({non_neg_integer(), non_neg_integer()}) :: t()
+  def new({row, col}) do
+    with(
+      :ok <- NumericValidations.non_neg_integer(row),
+      :ok <- NumericValidations.non_neg_integer(col)
+    ) do
+      %__MODULE__{row: row, col: col}
+    end
+  end
+
+  @doc """
   Converts a coordinate's linear index to row/col subscript
 
   | 0 | 3 | 6 |     |0,0|0,1|0,2|
