@@ -12,25 +12,18 @@ defmodule GamesEngine.Grid.Coordinate do
   @type t :: %__MODULE__{}
 
   @enforce_keys [:row, :col]
-  defstruct row: 0, col: 0, attributes: %{}
+  defstruct row: nil, col: nil
 
   @doc """
   Creates a new `%Coordinate{}` struct
   """
-  @spec new({non_neg_integer(), non_neg_integer()}) :: t()
+  @spec new({non_neg_integer(), non_neg_integer()}) :: t() | {:error | String.t()}
   def new({row, col}) do
     with(
       :ok <- NumericValidations.non_neg_integer(row),
       :ok <- NumericValidations.non_neg_integer(col)
     ) do
       %__MODULE__{row: row, col: col}
-    end
-  end
-
-  @spec new({non_neg_integer(), non_neg_integer()}, map()) :: t()
-  def new({row, col}, attributes) do
-    with %__MODULE__{} = coordinate <- new({row, col}) do
-      %{coordinate | attributes: attributes}
     end
   end
 
@@ -65,6 +58,8 @@ defmodule GamesEngine.Grid.Coordinate do
   |1,0|1,1|1,2| --> | 1 | 4 | 7 |
   |2,0|2,1|2,2|     | 2 | 5 | 8 |
   """
+  @spec sub2ind({non_neg_integer(), non_neg_integer()}, non_neg_integer(), non_neg_integer()) ::
+          non_neg_integer() | {:error, String.t()}
   def sub2ind({row, col}, rows, cols) do
     with(
       :ok <- NumericValidations.non_neg_integer(row),

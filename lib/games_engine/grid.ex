@@ -1,22 +1,23 @@
-defmodule GamesEngine.Grid.Grid do
+defmodule GamesEngine.Grid do
   @moduledoc """
   Grid component - represents a collection of Coordinates
   """
 
   alias GamesEngine.Grid.Coordinate
+  alias GamesEngine.Grid.Tile
   alias GamesEngine.Validations.NumericValidations
 
   @type t :: %__MODULE__{}
 
   @enforce_keys [:rows, :cols]
-  defstruct rows: 0, cols: 0, coordinates: %{}
+  defstruct rows: 0, cols: 0, tiles: %{}
 
   @doc """
   Creates a new `%Grid{}` struct
   Automatically populates the `:coordinates` attribute with a map of
   `%Coordinate{}`s based on the supplied dimensions
   """
-  @spec new(non_neg_integer(), non_neg_integer()) :: t()
+  @spec new(non_neg_integer(), non_neg_integer()) :: t() | {:error, String.t()}
   def new(rows, cols) do
     with(
       :ok <- NumericValidations.non_neg_integer(rows),
@@ -27,25 +28,24 @@ defmodule GamesEngine.Grid.Grid do
   end
 
   @doc """
-  Populates a `%Grid{}` with `%Coordinates{}`
+  Populates a `%Grid{}` with `%Tile{}`s
   """
-  @spec populate(t()) :: t()
-  def populate(%__MODULE__{rows: rows, cols: cols} = grid)
-      when not is_nil(rows) and not is_nil(cols) do
-    coordinates = generate_coordinates(rows, cols)
-    %{grid | coordinates: coordinates}
+  @spec populate(t(), map()) :: t()
+  def populate(%__MODULE__{} = grid, attributes \\ %{}) do
+    tiles = generate_tiles(grid.rows, grid.cols, attributes)
+    %{grid | tiles: tiles}
   end
 
-  @spec generate_coordinates(non_neg_integer(), non_neg_integer()) :: %{
+  @spec generate_tiles(non_neg_integer(), non_neg_integer(), map()) :: %{
           non_neg_integer() => Coordinate.t()
         }
-  defp generate_coordinates(rows, cols) do
+  defp generate_tiles(rows, cols, attributes) do
     max_ind = rows * cols - 1
 
-    Enum.reduce(0..max_ind, %{}, fn ind, coordinates ->
+    Enum.reduce(0..max_ind, %{}, fn ind, tiles ->
       {row, col} = Coordinate.ind2sub(ind, rows, cols)
-      coordinate = Coordinate.new({row, col})
-      Map.put(coordinates, ind, coordinate)
+      tile = Tile.new({row, col}, attributes)
+      Map.put(tiles, ind, tile)
     end)
   end
 end
