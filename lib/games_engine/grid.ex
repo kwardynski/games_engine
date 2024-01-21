@@ -4,12 +4,13 @@ defmodule GamesEngine.Grid do
   """
 
   alias GamesEngine.Grid.Coordinate
+  alias GamesEngine.Grid.Tile
   alias GamesEngine.Validations.NumericValidations
 
   @type t :: %__MODULE__{}
 
   @enforce_keys [:rows, :cols]
-  defstruct rows: 0, cols: 0, coordinates: %{}
+  defstruct rows: 0, cols: 0, tiles: %{}
 
   @doc """
   Creates a new `%Grid{}` struct
@@ -27,25 +28,24 @@ defmodule GamesEngine.Grid do
   end
 
   @doc """
-  Populates a `%Grid{}` with `%Coordinates{}`
+  Populates a `%Grid{}` with `%Tile{}`s
   """
   @spec populate(t()) :: t()
-  def populate(%__MODULE__{rows: rows, cols: cols} = grid)
-      when not is_nil(rows) and not is_nil(cols) do
-    coordinates = generate_coordinates(rows, cols)
-    %{grid | coordinates: coordinates}
+  def populate(%__MODULE__{rows: rows, cols: cols} = grid) do
+    tiles = generate_tiles(rows, cols)
+    %{grid | tiles: tiles}
   end
 
-  @spec generate_coordinates(non_neg_integer(), non_neg_integer()) :: %{
+  @spec generate_tiles(non_neg_integer(), non_neg_integer()) :: %{
           non_neg_integer() => Coordinate.t()
         }
-  defp generate_coordinates(rows, cols) do
+  defp generate_tiles(rows, cols) do
     max_ind = rows * cols - 1
 
-    Enum.reduce(0..max_ind, %{}, fn ind, coordinates ->
+    Enum.reduce(0..max_ind, %{}, fn ind, tiles ->
       {row, col} = Coordinate.ind2sub(ind, rows, cols)
-      coordinate = Coordinate.new({row, col})
-      Map.put(coordinates, ind, coordinate)
+      tile = Tile.new({row, col})
+      Map.put(tiles, ind, tile)
     end)
   end
 end

@@ -17,18 +17,18 @@ defmodule GamesEngine.GridTest do
     end
   end
 
-  describe "populate/2" do
-    test "successfully populates the :coordinates for a %Grid{}" do
+  describe "populate/1" do
+    test "successfully populates the :tiles for a %Grid{} with new tiles" do
       grid = Grid.new(2, 2)
 
-      num_coordinates =
+      num_tiles =
         grid
         |> Grid.populate()
-        |> Map.get(:coordinates)
+        |> Map.get(:tiles)
         |> Map.keys()
         |> length()
 
-      assert num_coordinates == 4
+      assert num_tiles == 4
     end
   end
 end
