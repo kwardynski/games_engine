@@ -13,7 +13,7 @@ defmodule GamesEngine.Grid.GridTest do
     end
 
     test "returns %Coordinate{} struct if row/col values valid" do
-      assert %Grid{rows: 3, cols: 3, coordinates: nil} == Grid.new(3, 3)
+      assert %Grid{rows: 3, cols: 3} == Grid.new(3, 3)
     end
   end
 

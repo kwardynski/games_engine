@@ -8,7 +8,8 @@ defmodule GamesEngine.Grid.Grid do
 
   @type t :: %__MODULE__{}
 
-  defstruct rows: nil, cols: nil, coordinates: nil
+  @enforce_keys [:rows, :cols]
+  defstruct rows: 0, cols: 0, coordinates: %{}
 
   @doc """
   Creates a new `%Grid{}` struct
