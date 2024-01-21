@@ -42,21 +42,16 @@ defmodule GamesEngine.Grid.CoordinateTest do
   end
 
   describe "new/2" do
-    setup do
-      [attributes: %{value: 1}]
+    test "returns error tuple if row is not a positive integer" do
+      assert {:error, _} = Coordinate.new({-3, 3})
     end
 
-    test "returns error tuple if row is not a positive integer", %{attributes: attributes} do
-      assert {:error, _} = Coordinate.new({-3, 3}, attributes)
+    test "returns error if col is not a positive integer" do
+      assert {:error, _} = Coordinate.new({3, -3})
     end
 
-    test "returns error if col is not a positive integer", %{attributes: attributes} do
-      assert {:error, _} = Coordinate.new({3, -3}, attributes)
-    end
-
-    test "returns %Coordinate{} struct with attached attributes", %{attributes: attributes} do
-      assert %Coordinate{row: 3, col: 3, attributes: %{value: 1}} ==
-               Coordinate.new({3, 3}, attributes)
+    test "returns a new %Coordinate{} struct with appropriate coordinates" do
+      assert %Coordinate{row: 3, col: 3} == Coordinate.new({3, 3})
     end
   end
 

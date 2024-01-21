@@ -12,7 +12,7 @@ defmodule GamesEngine.Grid.Coordinate do
   @type t :: %__MODULE__{}
 
   @enforce_keys [:row, :col]
-  defstruct row: 0, col: 0, attributes: %{}
+  defstruct row: nil, col: nil
 
   @doc """
   Creates a new `%Coordinate{}` struct
@@ -24,13 +24,6 @@ defmodule GamesEngine.Grid.Coordinate do
       :ok <- NumericValidations.non_neg_integer(col)
     ) do
       %__MODULE__{row: row, col: col}
-    end
-  end
-
-  @spec new({non_neg_integer(), non_neg_integer()}, map()) :: t()
-  def new({row, col}, attributes) do
-    with %__MODULE__{} = coordinate <- new({row, col}) do
-      %{coordinate | attributes: attributes}
     end
   end
 
