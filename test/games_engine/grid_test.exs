@@ -17,7 +17,7 @@ defmodule GamesEngine.GridTest do
     end
   end
 
-  describe "populate/1" do
+  describe "populate/2" do
     test "successfully populates the :tiles for a %Grid{} with new tiles" do
       grid = Grid.new(2, 2)
 
@@ -29,6 +29,20 @@ defmodule GamesEngine.GridTest do
         |> length()
 
       assert num_tiles == 4
+    end
+
+    test "successfully adds attributes to all tiles" do
+      default_attributes = %{value: nil, occupied: false}
+      grid = Grid.new(3, 3)
+
+      tiles =
+        grid
+        |> Grid.populate(default_attributes)
+        |> Map.get(:tiles)
+
+      Enum.each(tiles, fn {_, %{attributes: tile_attributes}} ->
+        assert tile_attributes == default_attributes
+      end)
     end
   end
 end

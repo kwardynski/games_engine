@@ -30,21 +30,21 @@ defmodule GamesEngine.Grid do
   @doc """
   Populates a `%Grid{}` with `%Tile{}`s
   """
-  @spec populate(t()) :: t()
-  def populate(%__MODULE__{} = grid) do
-    tiles = generate_tiles(grid.rows, grid.cols)
+  @spec populate(t(), map()) :: t()
+  def populate(%__MODULE__{} = grid, attributes \\ %{}) do
+    tiles = generate_tiles(grid.rows, grid.cols, attributes)
     %{grid | tiles: tiles}
   end
 
-  @spec generate_tiles(non_neg_integer(), non_neg_integer()) :: %{
+  @spec generate_tiles(non_neg_integer(), non_neg_integer(), map()) :: %{
           non_neg_integer() => Coordinate.t()
         }
-  defp generate_tiles(rows, cols) do
+  defp generate_tiles(rows, cols, attributes) do
     max_ind = rows * cols - 1
 
     Enum.reduce(0..max_ind, %{}, fn ind, tiles ->
       {row, col} = Coordinate.ind2sub(ind, rows, cols)
-      tile = Tile.new({row, col})
+      tile = Tile.new({row, col}, attributes)
       Map.put(tiles, ind, tile)
     end)
   end
