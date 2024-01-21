@@ -3,6 +3,20 @@ defmodule GamesEngine.Grid.CoordinateTest do
 
   alias GamesEngine.Grid.Coordinate
 
+  describe "new/1" do
+    test "returns error tuple if row is not a positive integer" do
+      assert {:error, _} = Coordinate.new({-3, 3})
+    end
+
+    test "returns error if col is not a positive integer" do
+      assert {:error, _} = Coordinate.new({3, -3})
+    end
+
+    test "returns %Coordinate{} struct if row/col values valid" do
+      assert %Coordinate{row: 3, col: 3} == Coordinate.new({3, 3})
+    end
+  end
+
   describe "ind2sub/3" do
     test "returns error tuple if ind is not a positive integer" do
       assert {:error, _} = Coordinate.ind2sub(-12, 3, 3)
