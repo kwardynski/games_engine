@@ -16,12 +16,15 @@ defmodule GamesEngine.Grid.Tile do
   """
   @spec new({non_neg_integer(), non_neg_integer()}) :: t()
   def new({row, col}) do
-    %__MODULE__{coordinate: Coordinate.new({row, col})}
+    with %Coordinate{} = coordinate <- Coordinate.new({row, col}) do
+      %__MODULE__{coordinate: coordinate}
+    end
   end
 
   @spec new({non_neg_integer(), non_neg_integer()}, map()) :: t()
   def new({row, col}, attributes) do
-    tile = new({row, col})
-    %{tile | attributes: attributes}
+    with tile <- new({row, col}) do
+      %{tile | attributes: attributes}
+    end
   end
 end
