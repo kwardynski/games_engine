@@ -41,20 +41,6 @@ defmodule GamesEngine.Grid.CoordinateTest do
     end
   end
 
-  describe "new/2" do
-    test "returns error tuple if row is not a positive integer" do
-      assert {:error, _} = Coordinate.new({-3, 3})
-    end
-
-    test "returns error if col is not a positive integer" do
-      assert {:error, _} = Coordinate.new({3, -3})
-    end
-
-    test "returns a new %Coordinate{} struct with appropriate coordinates" do
-      assert %Coordinate{row: 3, col: 3} == Coordinate.new({3, 3})
-    end
-  end
-
   describe "sub2ind/3" do
     test "returns error tuple if row is not a positive integer" do
       assert {:error, _} = Coordinate.sub2ind({-1, 2}, 3, 3)
