@@ -42,7 +42,7 @@ defmodule GamesEngine.Grid.Grid do
     max_ind = rows * cols - 1
 
     Enum.reduce(0..max_ind, %{}, fn ind, coordinates ->
-      {row, col} = Coordinate.ind2sub(ind, {rows, cols})
+      {row, col} = Coordinate.ind2sub(ind, rows, cols)
       coordinate = Coordinate.new({row, col})
       Map.put(coordinates, ind, coordinate)
     end)
