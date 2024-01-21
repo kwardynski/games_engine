@@ -4,7 +4,7 @@ defmodule GamesEngine.MixProject do
   def project do
     [
       app: :games_engine,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
