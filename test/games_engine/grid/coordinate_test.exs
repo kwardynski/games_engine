@@ -21,9 +21,9 @@ defmodule GamesEngine.Grid.CoordinateTest do
     end
 
     test "correctly converts ind to subs" do
-      assert %Coordinate{row: 2, col: 1} == Coordinate.ind2sub(5, {3, 3})
-      assert %Coordinate{row: 0, col: 2} == Coordinate.ind2sub(4, {2, 3})
-      assert %Coordinate{row: 1, col: 1} == Coordinate.ind2sub(4, {3, 2})
+      assert {2, 1} == Coordinate.ind2sub(5, {3, 3})
+      assert {0, 2} == Coordinate.ind2sub(4, {2, 3})
+      assert {1, 1} == Coordinate.ind2sub(4, {3, 2})
     end
   end
 

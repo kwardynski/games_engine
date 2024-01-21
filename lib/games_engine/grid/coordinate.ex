@@ -1,6 +1,9 @@
 defmodule GamesEngine.Grid.Coordinate do
   @moduledoc """
-  Functions for handling coordinate transformations and translations
+  Coordinate Component - represents a square within a grid
+
+  Currently also provides functions for handling coordinate
+  transformations.
   """
 
   alias GamesEngine.Validations.GridValidations
@@ -18,7 +21,8 @@ defmodule GamesEngine.Grid.Coordinate do
   | 1 | 4 | 7 | --> |1,0|1,1|1,2|
   | 2 | 5 | 8 |     |2,0|2,1|2,2|
   """
-  @spec ind2sub(non_neg_integer(), {non_neg_integer(), non_neg_integer()}) :: t(),
+  @spec ind2sub(non_neg_integer(), {non_neg_integer(), non_neg_integer()}) ::
+          {non_neg_integer(), non_neg_integer()},
         {:error, String.t()}
   def ind2sub(ind, {rows, cols}) do
     with(
@@ -30,7 +34,7 @@ defmodule GamesEngine.Grid.Coordinate do
       row = rem(ind, rows)
       col = floor(ind / rows)
 
-      %__MODULE__{row: row, col: col}
+      {row, col}
     end
   end
 
