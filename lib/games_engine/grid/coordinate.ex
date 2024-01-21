@@ -12,7 +12,7 @@ defmodule GamesEngine.Grid.Coordinate do
   @type t :: %__MODULE__{}
 
   @enforce_keys [:row, :col]
-  defstruct row: nil, col: nil
+  defstruct row: 0, col: 0, attributes: %{}
 
   @doc """
   Creates a new `%Coordinate{}` struct
