@@ -1,4 +1,4 @@
-defmodule GamesEngine.Grid.Grid do
+defmodule GamesEngine.Grid do
   @moduledoc """
   Grid component - represents a collection of Coordinates
   """

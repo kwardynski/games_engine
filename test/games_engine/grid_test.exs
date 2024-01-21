@@ -1,7 +1,7 @@
-defmodule GamesEngine.Grid.GridTest do
+defmodule GamesEngine.GridTest do
   use ExUnit.Case, async: true
 
-  alias GamesEngine.Grid.Grid
+  alias GamesEngine.Grid
 
   describe "new/2" do
     test "returns error tuple if row is not a positive integer" do
