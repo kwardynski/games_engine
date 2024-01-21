@@ -17,7 +17,7 @@ defmodule GamesEngine.Grid do
   Automatically populates the `:coordinates` attribute with a map of
   `%Coordinate{}`s based on the supplied dimensions
   """
-  @spec new(non_neg_integer(), non_neg_integer()) :: t()
+  @spec new(non_neg_integer(), non_neg_integer()) :: t() | {:error, String.t()}
   def new(rows, cols) do
     with(
       :ok <- NumericValidations.non_neg_integer(rows),
@@ -31,8 +31,8 @@ defmodule GamesEngine.Grid do
   Populates a `%Grid{}` with `%Tile{}`s
   """
   @spec populate(t()) :: t()
-  def populate(%__MODULE__{rows: rows, cols: cols} = grid) do
-    tiles = generate_tiles(rows, cols)
+  def populate(%__MODULE__{} = grid) do
+    tiles = generate_tiles(grid.rows, grid.cols)
     %{grid | tiles: tiles}
   end
 
