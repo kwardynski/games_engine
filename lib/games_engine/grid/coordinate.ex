@@ -27,6 +27,13 @@ defmodule GamesEngine.Grid.Coordinate do
     end
   end
 
+  @spec new({non_neg_integer(), non_neg_integer()}, map()) :: t()
+  def new({row, col}, attributes) do
+    with %__MODULE__{} = coordinate <- new({row, col}) do
+      %{coordinate | attributes: attributes}
+    end
+  end
+
   @doc """
   Converts a coordinate's linear index to row/col subscript
 
