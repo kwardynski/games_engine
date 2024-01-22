@@ -57,7 +57,7 @@ defmodule GamesEngine.Grid.TileTest do
     end
   end
 
-  describe "put_new_attribute/3" do
+  describe "add_attribute/3" do
     setup do
       [
         tile: %Tile{
@@ -68,11 +68,11 @@ defmodule GamesEngine.Grid.TileTest do
     end
 
     test "returns tile with existing attributes if existing attribute supplied", %{tile: tile} do
-      assert tile == Tile.put_new_attribute(tile, :a, 3)
+      assert tile == Tile.add_attribute(tile, :a, 3)
     end
 
     test "successfully adds a new attribute", %{tile: tile} do
-      assert %Tile{attributes: %{a: 1, b: 2}} = Tile.put_new_attribute(tile, :b, 2)
+      assert %Tile{attributes: %{a: 1, b: 2}} = Tile.add_attribute(tile, :b, 2)
     end
   end
 end

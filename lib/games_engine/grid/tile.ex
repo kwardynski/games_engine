@@ -55,8 +55,8 @@ defmodule GamesEngine.Grid.Tile do
   Adds a new attributes to a `%Tile{}`
   Will not overwrite the attribute if it already exists
   """
-  @spec put_new_attribute(t(), atom(), term()) :: t()
-  def put_new_attribute(%__MODULE__{} = tile, key, value) do
+  @spec add_attribute(t(), atom(), term()) :: t()
+  def add_attribute(%__MODULE__{} = tile, key, value) do
     updated_attributes =
       tile
       |> Map.get(:attributes)
