@@ -9,3 +9,9 @@ updates:
     commit-message: 
       prefix: "build(deps)"
       include: "scope"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: 
+      interval: "weekly"
+      day: "monday"
+      time: "14:00"
