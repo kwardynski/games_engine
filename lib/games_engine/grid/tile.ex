@@ -31,7 +31,7 @@ defmodule GamesEngine.Grid.Tile do
   @doc """
   Replaces the entire attributes map of a `%Tile{}` with a new map
   """
-  @spec replace_attributes(t(), map()) :: t()
+  @spec replace_attributes(t(), map()) :: t() | {:error, String.t()}
   def replace_attributes(%__MODULE__{} = tile, attributes) when is_map(attributes) do
     %{tile | attributes: attributes}
   end
@@ -41,7 +41,7 @@ defmodule GamesEngine.Grid.Tile do
   @doc """
   Updates an existing attribute of a `%Tile{}`
   """
-  @spec update_attribute(t(), atom(), term()) :: t()
+  @spec update_attribute(t(), atom(), any()) :: t()
   def update_attribute(%__MODULE__{} = tile, key, value) do
     updated_attributes =
       tile
@@ -55,7 +55,7 @@ defmodule GamesEngine.Grid.Tile do
   Adds a new attributes to a `%Tile{}`
   Will not overwrite the attribute if it already exists
   """
-  @spec add_attribute(t(), atom(), term()) :: t()
+  @spec add_attribute(t(), atom(), any()) :: t()
   def add_attribute(%__MODULE__{} = tile, key, value) do
     updated_attributes =
       tile
