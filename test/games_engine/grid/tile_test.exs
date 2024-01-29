@@ -32,7 +32,7 @@ defmodule GamesEngine.Grid.TileTest do
       assert {:error, "expected map for :attributes"} = Tile.replace_attributes(tile, "not a map")
     end
 
-    test "successfully updates the attributes of a tile", %{tile: tile} do
+    test "successfully replaces the attributes of a tile", %{tile: tile} do
       new_attributes = %{a: 1, b: 2}
       assert %Tile{attributes: ^new_attributes} = Tile.replace_attributes(tile, new_attributes)
     end
