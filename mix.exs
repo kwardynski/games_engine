@@ -58,7 +58,7 @@ defmodule GamesEngine.MixProject do
 
       # Testing
       {:excoveralls, "~> 0.18", only: :test},
-      {:stream_data, "~> 0.6.0", only: [:dev, :test]}
+      {:stream_data, "~> 1.0.0", only: [:dev, :test]}
     ]
   end
 
