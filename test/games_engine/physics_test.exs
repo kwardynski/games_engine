@@ -1,6 +1,8 @@
 defmodule GamesEngine.PhysicsTest do
   use ExUnit.Case, async: true
 
+  doctest GamesEngine.Physics
+
   alias GamesEngine.Grid.Coordinate
   alias GamesEngine.Physics
   alias GamesEngine.Physics.Velocity
