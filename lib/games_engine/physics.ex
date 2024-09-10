@@ -11,8 +11,11 @@ defmodule GamesEngine.Physics do
   Calculate's a `%Coordinate{}`'s new position based on a `%Velocity{}`
   """
   def translate(%Coordinate{} = coordinate, %Velocity{} = velocity) do
-    new_row = round(coordinate.col + velocity.y)
-    new_col = round(coordinate.row + velocity.x)
+    horizontal_translation = round(velocity.x)
+    vertical_translation = round(velocity.y)
+
+    new_row = coordinate.col + vertical_translation
+    new_col = coordinate.row + horizontal_translation
 
     %{coordinate | row: new_row, col: new_col}
   end
