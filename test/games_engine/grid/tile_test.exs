@@ -9,7 +9,7 @@ defmodule GamesEngine.Grid.TileTest do
       assert {:error, _} = Tile.new({-3, 3})
     end
 
-    test "returns error tuple ic fol is not a positive integer" do
+    test "returns error tuple if col is not a positive integer" do
       assert {:error, _} = Tile.new({3, -3})
     end
 
