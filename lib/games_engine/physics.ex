@@ -9,6 +9,15 @@ defmodule GamesEngine.Physics do
 
   @doc """
   Calculate's a `%Coordinate{}`'s new position based on a `%Velocity{}`
+  New `row` and `column` attributes will be rounded to conform with `%Grid{}` constraints
+
+  ## Examples
+
+      iex> coordinate = %GamesEngine.Grid.Coordinate{row: 10, col: 10}
+      iex> velocity = %GamesEngine.Physics.Velocity{x: 1, y: -2.5}
+      iex> GamesEngine.Physics.translate(coordinate, velocity)
+      %GamesEngine.Grid.Coordinate{row: 7, col: 11}
+
   """
   def translate(%Coordinate{} = coordinate, %Velocity{} = velocity) do
     horizontal_translation = round(velocity.x)
