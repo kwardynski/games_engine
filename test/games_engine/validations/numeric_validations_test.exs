@@ -47,7 +47,7 @@ defmodule GamesEngine.Validations.NumericValidationsTest do
     end
   end
 
-  defp numeric() do
+  defp numeric do
     gen all(
           integer <- integer(),
           float <- float()
