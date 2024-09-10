@@ -28,4 +28,20 @@ defmodule GamesEngine.PhysicsTest do
       assert %Coordinate{col: 1, row: 6} = Physics.translate(coordinate, velocity)
     end
   end
+
+  describe "bounce/2" do
+    setup do
+      [
+        velocity: %Velocity{x: -1.1, y: 2}
+      ]
+    end
+
+    test ":horizontal bounce reflects the x component", %{velocity: velocity} do
+      assert %Velocity{x: 1.1} = Physics.bounce(velocity, :horizontal)
+    end
+
+    test ":vertical bounce reflects the y component", %{velocity: velocity} do
+      assert %Velocity{y: -2} = Physics.bounce(velocity, :vertical)
+    end
+  end
 end
