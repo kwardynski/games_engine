@@ -49,9 +49,9 @@ defmodule GamesEngine.Validations.NumericValidationsTest do
 
   defp numeric() do
     gen all(
-      integer <- integer(),
-      float <- float()
-    ) do
+          integer <- integer(),
+          float <- float()
+        ) do
       Enum.random([integer, float])
     end
   end
