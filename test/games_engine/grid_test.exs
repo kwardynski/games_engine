@@ -51,20 +51,15 @@ defmodule GamesEngine.GridTest do
   describe "replace_tile_attributes/3" do
     test "returns error tuple if new attributes arg is not a map" do
       grid = grid_fixture(3, 3)
-
-      assert {:error, "expected map for :attributes"} =
-               Grid.replace_tile_attributes(grid, 3, "invalid_input")
+      assert {:error, "expected map for :attributes"} = Grid.replace_tile_attributes(grid, 3, "invalid_input")
     end
 
     test "successfully replaces the attributes of a tile" do
       grid = grid_fixture(3, 3)
       attributes = %{key: "value"}
 
-      assert %Grid{
-               tiles: %{
-                 3 => %{attributes: replaced_tile_attributes}
-               }
-             } = Grid.replace_tile_attributes(grid, 3, attributes)
+      assert %Grid{tiles: %{3 => %{attributes: replaced_tile_attributes}}} =
+               Grid.replace_tile_attributes(grid, 3, attributes)
 
       assert replaced_tile_attributes == attributes
     end
@@ -75,11 +70,8 @@ defmodule GamesEngine.GridTest do
       attributes = %{key: "value"}
       grid = grid_fixture(3, 3, attributes)
 
-      assert %Grid{
-               tiles: %{
-                 3 => %{attributes: tile_attributes}
-               }
-             } = Grid.update_tile_attribute(grid, 3, :new_key, "new_value")
+      assert %Grid{tiles: %{3 => %{attributes: tile_attributes}}} =
+               Grid.update_tile_attribute(grid, 3, :new_key, "new_value")
 
       assert tile_attributes == attributes
     end
@@ -88,11 +80,8 @@ defmodule GamesEngine.GridTest do
       attributes = %{key: "value"}
       grid = grid_fixture(3, 3, attributes)
 
-      assert %Grid{
-               tiles: %{
-                 3 => %{attributes: updated_tile_attributes}
-               }
-             } = Grid.update_tile_attribute(grid, 3, :key, "new_value")
+      assert %Grid{tiles: %{3 => %{attributes: updated_tile_attributes}}} =
+               Grid.update_tile_attribute(grid, 3, :key, "new_value")
 
       assert updated_tile_attributes == %{key: "new_value"}
     end
@@ -103,11 +92,8 @@ defmodule GamesEngine.GridTest do
       attributes = %{key: "value"}
       grid = grid_fixture(3, 3, attributes)
 
-      assert %Grid{
-               tiles: %{
-                 3 => %{attributes: tile_attributes}
-               }
-             } = Grid.add_tile_attribute(grid, 3, :key, "new_value")
+      assert %Grid{tiles: %{3 => %{attributes: tile_attributes}}} =
+               Grid.add_tile_attribute(grid, 3, :key, "new_value")
 
       assert tile_attributes == attributes
     end
@@ -116,11 +102,8 @@ defmodule GamesEngine.GridTest do
       attributes = %{key: "value"}
       grid = grid_fixture(3, 3, attributes)
 
-      assert %Grid{
-               tiles: %{
-                 3 => %{attributes: updated_tile_attributes}
-               }
-             } = Grid.add_tile_attribute(grid, 3, :new_key, "new_value")
+      assert %Grid{tiles: %{3 => %{attributes: updated_tile_attributes}}} =
+               Grid.add_tile_attribute(grid, 3, :new_key, "new_value")
 
       assert updated_tile_attributes == %{key: "value", new_key: "new_value"}
     end
