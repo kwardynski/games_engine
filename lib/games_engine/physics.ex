@@ -35,6 +35,17 @@ defmodule GamesEngine.Physics do
 
   A :horizontal bounce reflects the `x` component, and a :vertical bounce
   reflects the `y` component
+
+  ## Examples
+
+      iex> velocity = %GamesEngine.Physics.Velocity{x: 5, y: 0}
+      iex> GamesEngine.Physics.bounce(velocity, :horizontal)
+      %GamesEngine.Physics.Velocity{x: -5, y: 0}
+
+      iex> velocity = %GamesEngine.Physics.Velocity{x: 0, y: -1.2}
+      iex> GamesEngine.Physics.bounce(velocity, :vertical)
+      %GamesEngine.Physics.Velocity{x: 0, y: 1.2}
+
   """
   @spec bounce(Velocity.t(), bounce_type()) :: Velocity.t()
   def bounce(%Velocity{} = velocity, :horizontal), do: %{velocity | x: -velocity.x}
