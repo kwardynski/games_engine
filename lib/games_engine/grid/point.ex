@@ -15,8 +15,8 @@ defmodule GamesEngine.Grid.Point do
   @spec new(number(), number()) :: t() | {:error, String.t()}
   def new(x, y) do
     with(
-      :ok <- NumericValidations.non_neg_integer(x),
-      :ok <- NumericValidations.non_neg_integer(y)
+      :ok <- NumericValidations.numeric(x),
+      :ok <- NumericValidations.numeric(y)
     ) do
       %__MODULE__{x: x, y: y}
     end
