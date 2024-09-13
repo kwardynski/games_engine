@@ -16,4 +16,14 @@ defmodule GamesEngine.Validations.NumericValidations do
   @spec numeric(term()) :: :ok | {:error, String.t()}
   def numeric(input) when is_number(input), do: :ok
   def numeric(input), do: {:error, "Expected numeric value, received #{inspect input}"}
+
+  @doc """
+  Ensures the input is within a given range
+  """
+  @spec within_range(term(), number(), number()) :: :ok | {:error, String.t()}
+  def within_range(input, min, max) do
+    if input >= min && input <= max,
+      do: :ok,
+      else: {:error, "#{inspect input} is not within the range of [#{inspect min}, #{inspect max}]"}
+  end
 end

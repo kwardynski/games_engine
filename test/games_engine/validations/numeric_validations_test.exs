@@ -41,6 +41,50 @@ defmodule GamesEngine.Validations.NumericValidationsTest do
     end
   end
 
+  describe "within_range/3" do
+    test "returns error tuple if number below range" do
+      input = 1
+      min = 2
+      max = 3
+
+      assert {:error, message} = NumericValidations.within_range(input, min, max)
+      assert message == "1 is not within the range of [2, 3]"
+    end
+
+    test "returns error tuple if number exceeds range" do
+      input = 3.3
+      min = 1
+      max = 2.2
+
+      assert {:error, message} = NumericValidations.within_range(input, min, max)
+      assert message == "3.3 is not within the range of [1, 2.2]"
+    end
+
+    test "returns :ok if number within range" do
+      input = -1
+      min = -3
+      max = 5.5
+
+      assert :ok == NumericValidations.within_range(input, min, max)
+    end
+
+    test "returns :ok if number equals lower bound" do
+      input = 1
+      min = 1
+      max = 3
+
+      assert :ok == NumericValidations.within_range(input, min, max)
+    end
+
+    test "returns :ok if number equals upper bound" do
+      input = 3
+      min = 1
+      max = 3
+
+      assert :ok == NumericValidations.within_range(input, min, max)
+    end
+  end
+
   defp negative_integer(min_bound \\ -100) do
     gen all(neg_integer <- member_of(min_bound..-1)) do
       neg_integer
