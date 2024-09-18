@@ -50,7 +50,7 @@ defmodule GamesEngine.Validations.GridValidations do
   end
 
   @doc """
-  Determines whether a `%Point{}` is within the bounds of a `%Grid{}.
+  Determines whether a `%Point{}` is within the bounds of a `%Grid{}`.
   If the `%Point{}`'s coordinates are outside the `%Grid{}`, will return an error tuple
   along with the direction(s) which the `%Point{}` is outside the `%Grid{}`
 
