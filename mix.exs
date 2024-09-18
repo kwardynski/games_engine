@@ -4,7 +4,7 @@ defmodule GamesEngine.MixProject do
   def project do
     [
       app: :games_engine,
-      version: "0.3.1",
+      version: "0.3.2",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
